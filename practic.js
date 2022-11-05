@@ -1,55 +1,76 @@
-//  Використовуючи if...else напиши код, який буде запитувати у користувача "Яка офіційна назва JavaScript?".
-//    Якщо користувач вводить "ECMAScript", то показати за допомогою alert("Вірно!")
-//    У інших випадках показати "Не знаєте? ECMAScript!"
+// Напишіть дві функції
+// letMeSeeYourName(callback) - запитує ім"я користувача через prompt та викликає callback функцію
+// greet(name) - колбек, що приймає ім"я та виводить у консоль рядок "Привіт < name > "
+// Потрібно реалізувати перевірку, що prompt не порожній
 
-// const question = prompt("Яка офіційна назва JavaScript?");
-// const answer = "ECMAScript"
-// if (answer.toLowerCase() === question.toLowerCase()) {
-//   alert("Вірно!")
-// } else {
-//     alert("Не знаєте? ECMAScript!")
+// const letMeSeeYourName = callback =>{
+//   const names = prompt("What is your name");
+//     if(!names) {
+//      console.log('not is write name')
+//     } 
+//     callback(names)
 // }
 
+// const greet = name => {
+//     console.log(`hello ${name}`)
+// }
+//   letMeSeeYourName(greet)
 
-//  Напишіть цикл, який виводить у консоль числа від max до min у порядку зменшення.
-// У консоль виведіть усі парні числа від min до max
+// Напишіть дві функції
+// makeProduct(name, price, callback) - приймає ім"я та ціну товару, а також callback
+// Функція створює об"єкт товару, додає йому унікальний ідентифікатор у властивість id та викликає callback,
+// передаючи йому створений об"єкт
+// showProduct(product)  - колбек, що приймає об"єкт продукта та виводить його у консоль
 
-// const max = 50
-// const min = 23
- 
-// for (let i = max; i >= min; i -= 1) {
-//     if (i % 2 === 0) { 
-//         console.log(i)
-//     }
+// const makeProduct = (name, price, callback) => {
+//   const product = {
+//     name,
+//     price,
+//     id: Math.random()
+//   }
+//   callback(product)
+// }
+// const showProduct = products => console.log(products)
+// makeProduct('Berli', 500, showProduct )
+
+// Потрібно виправити помилки, щоб код працював
+// const product = {
+//   price: 5000,
+//   showPrice() {
+//     console.log(this.price)
+//   },
+// }
+// product.showPrice()
+
+// Потрібно виправити помилки, щоб код працював
+// const product = {
+//   price: 5000,
+//   showPrice() {
+//     console.log(this.price)
+//   },
 // }
 
-//Напиши код, який буде запитувати логін за допомогою prompt та логувати результат у консоль браузера.
-// Якщо користувач вводить "Адмін", то promt запитує пароль.Якщо нічого не введено або натиснута клавіша Esc,
-//     вивести рядок "Відмінено"
-//     У іншому випадку вивести рядок "Я вас не знаю!"
+// function callAction(action) {
+//   action()
+// }
 
-// Пароль перевіряти так:
-// якщо введено пароль "Я головний", то вивести "Вітаю!",
-//     у іншому випадку виводити рядок "Невірний пароль!".
+// // =====================================================
+// callAction(product.showPrice.bind(product))
 
+// Потрібно виконати рефакторинг коду так, щоб не потрібно було кожного разу передавати ім"я шефа
+// Напишіть функцію makeShef(shefName), яка повертає функцію makeDish(dish),
+//     яка пам"ятає ім"я шефа під час свого виклику
+// const makeDish = function (shefName, dish) {
+//   console.log(`${shefName} is cooking ${dish}`)
+// }
 
-// Напиши функцію, яка на вхід приймає масив та елемент, який потрібно видалити
-// виклик фукції повинен повертати нам новий масив без видаленого елелементу.
-//
-
-
-// 9. Дано рядок, який складається із символів.Наприклад, 'abcde'.
-//     Перевірте, що першим символом цього рядка є літера 'a'.
-//  Якщо це так - вивести "так", у іншому випадку вивести "ні"
-
-
-function elements (string){
-if (string[0] === "a") {
-    return "так";
+function makeShef(shefName) {
+  return function makeDish (dish) {
+    console.log(`${shefName} is cooking ${dish}`)
   }
-return "ні";
 }
 
-
-console.log(elements('abcde'));
-console.log(elements('wbcde'));
+const mango = makeShef('Mango')
+mango = makeShef('apple pie')
+// makeDish('Mango', 'apple pie')
+// makeDish('Poly', 'muffins')
